@@ -6,6 +6,8 @@
 # 国民の祝日 - Wikipedia
 # http://ja.wikipedia.org/wiki/%E5%9B%BD%E6%B0%91%E3%81%AE%E7%A5%9D%E6%97%A5
 
+import sys
+import argparse
 import datetime
 
 
@@ -16,6 +18,11 @@ THURSDAY = 3
 FRIDAY = 4
 SATUEDAY = 5
 SUNDAY = 6
+
+
+option_parser = argparse.ArgumentParser()
+option_parser.add_argument("-f", type=int, required=True, help="from year")
+option_parser.add_argument("-t", type=int, required=True, help="to year")
 
 
 # うるう年
@@ -120,17 +127,17 @@ def wareki(year):
 # (start, end, name, factory)
 # end=9999 for the present system
 JPHOLIDAYS = [
-        (1948, 9999, "元日", lambda year: datetime.date(year, 1, 1)),
+        (1949, 9999, "元日", lambda year: datetime.date(year, 1, 1)),
         (1949, 1999, "成人の日", lambda year: datetime.date(year, 1, 15)),
         (2000, 9999, "成人の日", lambda year: nthweekday(year, 1, MONDAY, 2)),
         (1967, 9999, "建国記念の日", lambda year: datetime.date(year, 2, 11)),
-        (1948, 9999, "春分の日", lambda year: shunnbunn(year)),
-        (1948, 1988, "天皇誕生日", lambda year: datetime.date(year, 4, 29)),
+        (1949, 9999, "春分の日", lambda year: shunnbunn(year)),
+        (1949, 1988, "天皇誕生日", lambda year: datetime.date(year, 4, 29)),
         (1989, 2006, "みどりの日", lambda year: datetime.date(year, 4, 29)),
         (2007, 9999, "昭和の日", lambda year: datetime.date(year, 4, 29)),
-        (1948, 9999, "憲法記念日", lambda year: datetime.date(year, 5, 3)),
+        (1949, 9999, "憲法記念日", lambda year: datetime.date(year, 5, 3)),
         (2007, 9999, "みどりの日", lambda year: datetime.date(year, 5, 4)),
-        (1948, 9999, "こどもの日", lambda year: datetime.date(year, 5, 5)),
+        (1949, 9999, "こどもの日", lambda year: datetime.date(year, 5, 5)),
         (1996, 2002, "海の日", lambda year: datetime.date(year, 7, 20)),
         (2003, 9999, "海の日", lambda year: nthweekday(year, 7, MONDAY, 3)),
         (1966, 2002, "敬老の日", lambda year: datetime.date(year, 9, 15)),
@@ -210,12 +217,14 @@ def holidays(year):
     return days
 
 
-def main():
-    for year in range(1955, 2013):
+def main(args=None):
+    args = option_parser.parse_args(args)
+    for year in range(args.f, args.t + 1):
         for date, name in holidays(year):
             nengo, nen = wareki(date.year)
             print("%s,%s%d年,%s" % (date, nengo, nen, name))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
