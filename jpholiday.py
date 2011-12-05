@@ -135,7 +135,10 @@ JPHOLIDAYS = [
         (1948, 9999, "文化の日", lambda year: datetime.date(year, 11, 3)),
         (1948, 9999, "勤労感謝の日", lambda year: datetime.date(year, 11, 23)),
         (1989, 9999, "天皇誕生日", lambda year: datetime.date(year, 12, 23)),
-        (1989, 1989, "昭和天皇大喪の礼", lambda year: datetime.date(year, 2, 24)),
+        (1959, 1959, "皇太子・明仁親王の結婚の儀", lambda year: datetime.date(year, 4, 10)),
+        (1989, 1989, "昭和天皇の大喪の礼", lambda year: datetime.date(year, 2, 24)),
+        (1990, 1990, "即位の礼正殿の儀", lambda year: datetime.date(year, 11, 12)),
+        (1993, 1993, "皇太子・徳仁親王の結婚の儀", lambda year: datetime.date(year, 6, 9)),
         ]
 
 
