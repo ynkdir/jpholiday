@@ -36,6 +36,9 @@ def nthweekday(year, month, weekday, nth):
     return date
 
 
+# 祝日としての春分の日・秋分の日は、前年の2月1日に、春分の日・秋分の日の
+# 日付が書かれた「暦要項（れきようこう）」が官報に掲載されることによっ
+# て、正式決定となる。
 # 春分の日 - Wikipedia
 # http://ja.wikipedia.org/wiki/%E6%98%A5%E5%88%86%E3%81%AE%E6%97%A5
 def shunnbunn(year):
@@ -66,6 +69,9 @@ def shunnbunn(year):
     return None
 
 
+# 祝日としての春分の日・秋分の日は、前年の2月1日に、春分の日・秋分の日の
+# 日付が書かれた「暦要項（れきようこう）」が官報に掲載されることによっ
+# て、正式決定となる。
 # 秋分の日
 # http://ja.wikipedia.org/wiki/%E7%A7%8B%E5%88%86%E3%81%AE%E6%97%A5
 def shuubunn(year):
